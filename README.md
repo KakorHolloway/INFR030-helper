@@ -36,5 +36,11 @@ https://console-openshift-console.apps.openshift.kakor.ovh
 
 Par utilisateur connectez vous avec un compte ipi-gp-1 à ipi-gp-6 avec le mot de passe B4teau123!
 
+## Exercices 
+
+### Exercice deployment 
+
+
+
 
 
