@@ -22,5 +22,17 @@ swapoff -a
 
 relancez la commande ```kubeadm init --pod-network-cidr=10.244.0.0/16```, faites le cp donné dans le résultat de la commande et refaite un join sur les workers. 
 
-## 
+## POUR CEUX QUI N'ONT PLUS LES VMS 
+
+Téléchargez le lien suivant : https://github.com/okd-project/okd/releases/download/4.15.0-0.okd-2024-03-10-010116/openshift-client-windows-4.15.0-0.okd-2024-03-10-010116.zip
+
+Récupérez le fichier oc.exe et mettez le dans un dossier spécifique (ex: C:/Users/monuser/exe)
+
+Ouvrez le programme variable d'environnement et ajoutez ce chemin dans le path. 
+
+Une fois fait, réouvrez un invite de commande et au lancez la commande de connexion récupérée sur le site :
+
+https://console-openshift-console.apps.openshift.kakor.ovh
+
+
 
