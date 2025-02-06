@@ -1,0 +1,33 @@
+apiVersion: v1
+data:
+  app.py: "from flask import Flask, request, render_template_string\r\nfrom flask_sqlalchemy
+    import SQLAlchemy\r\n\r\napp = Flask(__name__)\r\n\r\n@app.route('/', methods=['GET',
+    'POST'])\r\ndef index():\r\n    message = None  # Initialize the message variable\r\n
+    \   if request.method == 'POST':\r\n        host = request.form['host']\r\n        port
+    = request.form['port']\r\n        username = request.form['username']\r\n        password
+    = request.form['password']\r\n        database = request.form['database']\r\n\r\n
+    \       connection_string = f'mysql+pymysql://{username}:{password}@{host}:{port}/{database}'\r\n
+    \       app.config['SQLALCHEMY_DATABASE_URI'] = connection_string\r\n        db
+    = SQLAlchemy(app)\r\n\r\n        try:\r\n            db.engine.execute('SELECT
+    1')\r\n            message = \"Connexion réussie\"\r\n        except Exception
+    as e:\r\n            message = f\"Erreur de connexion : {e}\"\r\n\r\n    return
+    render_template_string(TEMPLATE, message=message)\r\n\r\n\r\nTEMPLATE = \"\"\"\r\n<!doctype
+    html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta
+    name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Tester
+    la connexion à une base de données</title>\r\n</head>\r\n<body>\r\n    <h1>Tester
+    la connexion à une base de données</h1>\r\n    <form method=\"post\">\r\n        <label
+    for=\"host\">Hôte:</label>\r\n        <input type=\"text\" id=\"host\" name=\"host\"
+    required><br>\r\n\r\n        <label for=\"port\">Port:</label>\r\n        <input
+    type=\"text\" id=\"port\" name=\"port\" required><br>\r\n\r\n        <label for=\"username\">Nom
+    d'utilisateur:</label>\r\n        <input type=\"text\" id=\"username\" name=\"username\"
+    required><br>\r\n\r\n        <label for=\"password\">Mot de passe:</label>\r\n
+    \       <input type=\"password\" id=\"password\" name=\"password\" required><br>\r\n\r\n
+    \       <label for=\"database\">Nom de la base de données:</label>\r\n        <input
+    type=\"text\" id=\"database\" name=\"database\" required><br>\r\n\r\n        <input
+    type=\"submit\" value=\"Tester la connexion\">\r\n    </form>\r\n\r\n    {% if
+    message %}\r\n        <p>{{ message }}</p>\r\n    {% endif %}\r\n</body>\r\n</html>\r\n\"\"\"\r\n\r\nif
+    __name__ == '__main__':\r\n    app.run(debug=True)\r\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: python
