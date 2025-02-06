@@ -30,9 +30,11 @@ Récupérez le fichier oc.exe et mettez le dans un dossier spécifique (ex: C:/U
 
 Ouvrez le programme variable d'environnement et ajoutez ce chemin dans le path. 
 
-Une fois fait, réouvrez un invite de commande et au lancez la commande de connexion récupérée sur le site :
+Une fois fait, réouvrez un invite de commande et au lancez la commande de connexion récupérée sur le site (lors de la création d'un token):
 
 https://console-openshift-console.apps.openshift.kakor.ovh
+
+Par utilisateur connectez vous avec un compte ipi-gp-1 à ipi-gp-6 avec le mot de passe B4teau123!
 
 
 
