@@ -10,6 +10,15 @@ spec:
   - image: harbor.kakor.ovh/public/flask-default:latest
     name: flask
     resources: {}
+    volumeMounts:
+      - name: app
+        mountPath: "/app"
+  volumes:
+  # You set volumes at the Pod level, then mount them into containers inside that Pod
+  - name: app
+    configMap:
+      # Provide the name of the ConfigMap you want to mount.
+      name: python
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
