@@ -6,7 +6,7 @@ Pour ce faire, vous devrez créer les éléments suivants :
 
 - Deux déploiement (un mariadb, et un autre avec bookstack). Afin de définir ces déploiement et les variables d'environnement associées, vous pourrez utiliser les exemples docker-compose ci joint : https://docs.linuxserver.io/images/docker-bookstack/#docker-cli-click-here-for-more-info et https://hub.docker.com/_/mysql. Attention la variable d'environnement APP_URL doit contenir l'url d'accès depuis l'extérieur à l'application bookstack. Une variable app_key, nécéssitera la mise en place d'une clé que vous pouvez générer lors de l'execution de commandes dans le conteneur bookstack. 
 
-Vous pouvez utiliser la valeur suivante :
+Vous pouvez utiliser la valeur d'appkey suivante :
 ```base64:cBgxMm49Z++Tb7f/GHy1xdaGUwz9LCTagITUmnzu/R4=```
 
 Les images que vous pouvez utiliser sont les suivantes : lscr.io/linuxserver/bookstack:latest et lscr.io/linuxserver/mariadb:latest

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    service: mariadb
+  name: mariadb
+  namespace: bookstack
+spec:
+  serviceName: "mariadb"
+  replicas: 1
+  selector:
+    matchLabels:
+      service: mariadb
+  template:
+    metadata:
+      labels:
+        service: mariadb
+    spec:
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: bookstack-pvc
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: bookstackapp
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password
+              key: MYSQL_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password
+              key: MYSQL_PASSWORD
+        - name: MYSQL_USER
+          value: bookstack
+        image: lscr.io/linuxserver/mariadb
+        name: mariadb
+        volumeMounts:
+        - mountPath: "/config"
+          name: mysql-data
+        ports:
+        - containerPort: 3306
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 10
