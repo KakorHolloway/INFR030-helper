@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: ipi-rbac
+rules:
+- apiGroups: ["authorization.openshift.io"]
+  resources: ["rolebindings", "roles"]
+  verbs: ["*"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["clusterrolebindings", "clusterroles","rolebindings", "roles"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+# This cluster role binding allows anyone in the "manager" group to read secrets in any namespace.
+kind: ClusterRoleBinding
+metadata:
+  name: ipi-rbac-crb
+subjects:
+- kind: User
+  name: ipi-gp-1
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-2
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-3
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-4
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-5
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-6
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-7
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-8
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-9
+  apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: ipi-gp-10
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: ipi-rbac
+  apiGroup: rbac.authorization.k8s.io
